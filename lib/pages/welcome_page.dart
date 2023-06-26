@@ -1,4 +1,6 @@
 import 'package:enjoy_tours/widgets/app_largetext.dart';
+import 'package:enjoy_tours/widgets/app_text.dart';
+import 'package:enjoy_tours/widgets/responsive_button.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/src/foundation/key.dart';
 // import 'package:flutter/src/widgets/framework.dart';
@@ -12,9 +14,15 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   List images = [
-    'https://w0.peakpx.com/wallpaper/533/765/HD-wallpaper-night-landscape-art-cartoon-design-moon-moons-nature-tree-vector.jpg',
-    'https://w0.peakpx.com/wallpaper/533/765/HD-wallpaper-night-landscape-art-cartoon-design-moon-moons-nature-tree-vector.jpg',
-    'https://w0.peakpx.com/wallpaper/533/765/HD-wallpaper-night-landscape-art-cartoon-design-moon-moons-nature-tree-vector.jpg',
+    'https://i.pinimg.com/564x/55/29/fb/5529fb05282b1a328251486907f331a5.jpg',
+    'https://i.pinimg.com/564x/55/29/fb/5529fb05282b1a328251486907f331a5.jpg',
+    'https://i.pinimg.com/564x/55/29/fb/5529fb05282b1a328251486907f331a5.jpg',
+  ];
+  List text = ['Mountain', 'Ocean', 'Forest'];
+  List sub_text = [
+    'Mountain hikes give you an incredible sense of freedom along with endurance test.',
+    'Ocean refers to pleasure travel in which the sea is the primary focus of activities.',
+    'Forests and other wild places can promote greater understanding and appreciation of nature.',
   ];
 
   @override
@@ -37,9 +45,25 @@ class _WelcomePageState extends State<WelcomePage> {
               margin: EdgeInsets.only(top: 150, left: 20, right: 20),
               child: Row(children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppLargeText(text: 'Trips'),
+                    AppText(
+                      text: text[index],
+                      size: 32,
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Container(
+                      width: 250,
+                      child: AppText(
+                        text: sub_text[index],
+                      ),
+                    ),
+                    SizedBox(height: 28,),
+                    ResponsiveButton(width: 100,),
                   ],
                 )
               ]),
