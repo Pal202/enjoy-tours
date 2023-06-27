@@ -42,31 +42,53 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
             ),
             child: Container(
-              margin: EdgeInsets.only(top: 150, left: 20, right: 20),
-              child: Row(children: [
-                Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              margin: EdgeInsets.only(top: 100, left: 20, right: 20),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppLargeText(text: 'Trips'),
-                    AppText(
-                      text: text[index],
-                      size: 32,
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppLargeText(text: 'Trips'),
+                        AppText(
+                          text: text[index],
+                          size: 32,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Container(
+                          width: 250,
+                          child: AppText(
+                            text: sub_text[index],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 28,
+                        ),
+                        ResponsiveButton(
+                          width: 100,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      width: 250,
-                      child: AppText(
-                        text: sub_text[index],
-                      ),
-                    ),
-                    SizedBox(height: 28,),
-                    ResponsiveButton(width: 100,),
-                  ],
-                )
-              ]),
+                    Column(
+                      children: List.generate(3, (indexDots) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 2),
+                          width: 8,
+                          height: index == indexDots ? 24 : 10,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: index == indexDots
+                                ? Color.fromARGB(236, 5, 101, 114)
+                                : Color.fromARGB(236, 5, 101, 114)
+                                    .withOpacity(0.4),
+                          ),
+                        );
+                      }),
+                    )
+                  ]),
             ),
           );
         },
