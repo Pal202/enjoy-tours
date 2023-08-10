@@ -1,4 +1,5 @@
 import 'package:enjoy_tours/widgets/app_largetext.dart';
+import 'package:enjoy_tours/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +10,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  var images = {
+    "https://4kwallpapers.com/images/wallpapers/mountains-illustration-flight-night-sunset-gradient-1080x2160-2734.png":
+        "Balloning",
+    "https://4kwallpapers.com/images/wallpapers/mountains-illustration-flight-night-sunset-gradient-1080x2160-2734.png":
+        "Hiking",
+    "https://4kwallpapers.com/images/wallpapers/mountains-illustration-flight-night-sunset-gradient-1080x2160-2734.png":
+        "Kayaking",
+    "https://4kwallpapers.com/images/wallpapers/mountains-illustration-flight-night-sunset-gradient-1080x2160-2734.png":
+        "Snorkling",
+  };
+
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -28,7 +40,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
                 Expanded(child: Container()),
                 Container(
-                  margin: EdgeInsets.only(right: 20),
+                  margin: EdgeInsets.only(right: 24),
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
@@ -40,14 +52,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 24,
           ),
           Container(
             margin: EdgeInsets.only(left: 20),
             child: AppLargeText(text: 'Discover'),
           ),
           SizedBox(
-            height: 15,
+            height: 20,
           ),
           Container(
             child: Align(
@@ -59,7 +71,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 unselectedLabelColor: Colors.grey,
                 isScrollable: true,
                 indicatorSize: TabBarIndicatorSize.label,
-                indicator: CircleTabIndicator(color: Color.fromARGB(236, 5, 101, 114), radius: 4),
+                indicator: CircleTabIndicator(
+                    color: Color.fromARGB(236, 5, 101, 114), radius: 4),
                 tabs: [
                   Tab(text: 'Places'),
                   Tab(text: 'Inspiration'),
@@ -69,16 +82,96 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
           Container(
-            height: 240,
+            padding: EdgeInsets.only(left: 20),
+            height: 300,
             width: double.maxFinite,
             child: TabBarView(
               controller: _tabController,
               children: [
-                Text('Hi'),
+                ListView.builder(
+                    itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: EdgeInsets.only(right: 15, top: 10),
+                        width: 200,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.white,
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9q8A429NMCoqjTCakfLC5gNpxrORBhZuySQ&usqp=CAU'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }),
                 Text('There'),
                 Text('Bye'),
               ],
             ),
+          ),
+          SizedBox(
+            height: 24,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppLargeText(
+                  text: 'Explore more',
+                  size: 22,
+                ),
+                AppText(
+                  text: 'See all',
+                  color: Color.fromARGB(255, 0, 91, 165),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Container(
+            height: 120,
+            width: double.maxFinite,
+            margin: EdgeInsets.only(left: 20),
+            child: ListView.builder(
+                itemCount: 4,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (_, index) {
+                  return Container(
+                    margin: EdgeInsets.only(right: 32),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://4kwallpapers.com/images/wallpapers/mountains-illustration-flight-night-sunset-gradient-1080x2160-2734.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          child: AppText(
+                            text: "Hiking",
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
           )
         ],
       ),
@@ -107,8 +200,10 @@ class _CirclePainter extends BoxPainter {
     Paint _paint = Paint();
     _paint.color = color;
     _paint.isAntiAlias = true;
-    final Offset circleOffset = Offset(configuration.size!.width/2 - radius/2 , configuration.size!.height);
+    final Offset circleOffset = Offset(
+        configuration.size!.width / 2 - radius / 2,
+        configuration.size!.height - radius);
 
-    canvas.drawCircle(offset+circleOffset, radius, _paint);
+    canvas.drawCircle(offset + circleOffset, radius, _paint);
   }
 }
