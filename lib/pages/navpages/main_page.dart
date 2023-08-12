@@ -1,5 +1,5 @@
 import 'package:enjoy_tours/pages/navpages/bar_item_page.dart';
-import 'package:enjoy_tours/pages/navpages/home_page.dart';
+import 'package:enjoy_tours/pages/home_page.dart';
 import 'package:enjoy_tours/pages/navpages/my_page.dart';
 import 'package:enjoy_tours/pages/navpages/search_page.dart';
 import 'package:flutter/material.dart';
